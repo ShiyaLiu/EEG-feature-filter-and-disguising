@@ -26,26 +26,30 @@ please run the following code in order:
 **I manually did this because I run the data processing code on my own device but run my code for the model on a virtual machine.*
 
 ### Train the EEG disguising Model
-
+- First use `data_extra_combined_label.ipynb` in the folder \EEG_idendity_disguising\datasets\eeg to generate training set with extra combined label
+- Run the script:
+```
+python -m visdom.server
+```
 - Train the model with the semantic constraint on alocoholism feature
 ```
-python train.py --name cycada_alcoholism --resize_or_crop=None --loadSize=32 --fineSize=32 --which_model_netD n_layers --n_layers_D 3 --model cycle_gan_semantic --lambda_A 1 --lambda_B 1 --lambda_identity 0 --no_flip --batchSize 64 --dataset_mode EEG --dataroot ./datasets/eeg/ --data_real uci_eeg_images_train_within.mat --data_dummy eeg_dummy_images_w_label_step3_within.mat --which_direction BtoA --feature alcoholism --num_classes 2
+python train.py --name cycada_alcoholism --resize_or_crop=None --loadSize=32 --fineSize=32 --which_model_netD n_layers --n_layers_D 3 --model cycle_gan_semantic --lambda_A 1 --lambda_B 1 --lambda_identity 0 --no_flip --batchSize 64 --dataset_mode EEG --dataroot ./datasets/eeg/ --data_real uci_eeg_images_train_within_extra.mat --data_dummy eeg_dummy_images_w_label_step3_within_extra.mat --which_direction BtoA --feature alcoholism --num_classes 2
 ```
 - Train the model with the semantic constraint on stimulus
 ```
-python train.py --name cycada_stimulus --resize_or_crop=None --loadSize=32 --fineSize=32 --which_model_netD n_layers --n_layers_D 3 --model cycle_gan_semantic --lambda_A 1 --lambda_B 1 --lambda_identity 0 --no_flip --batchSize 64 --dataset_mode EEG --dataroot ./datasets/eeg/ --data_real uci_eeg_images_train_within.mat --data_dummy eeg_dummy_images_w_label_step3_within.mat --which_direction BtoA --feature stimulus --num_classes 5
+python train.py --name cycada_stimulus --resize_or_crop=None --loadSize=32 --fineSize=32 --which_model_netD n_layers --n_layers_D 3 --model cycle_gan_semantic --lambda_A 1 --lambda_B 1 --lambda_identity 0 --no_flip --batchSize 64 --dataset_mode EEG --dataroot ./datasets/eeg/ --data_real uci_eeg_images_train_within_extra.mat --data_dummy eeg_dummy_images_w_label_step3_within_extra.mat --which_direction BtoA --feature stimulus --num_classes 5
 ```
 - Train the model with the semantic constraint on the combined label (alcoholism + stimulus)
-    - first use data_extra_combined_label.ipynb in the folder \EEG_idendity_disguising\datasets\eeg to generate training set with extra combined label
-    - run the script below
+
 ```
-python train.py --name cycada_combined --resize_or_crop=None --loadSize=32 --fineSize=32 --which_model_netD n_layers --n_layers_D 3 --model cycle_gan_semantic --lambda_A 1 --lambda_B 1 --lambda_identity 0 --no_flip --batchSize 64 --dataset_mode EEG --dataroot ./datasets/eeg/ --data_real uci_eeg_images_train_within.mat --data_dummy eeg_dummy_images_w_label_step3_within.mat --which_direction BtoA --feature combined --num_classes 10
+python train.py --name cycada_combined --resize_or_crop=None --loadSize=32 --fineSize=32 --which_model_netD n_layers --n_layers_D 3 --model cycle_gan_semantic --lambda_A 1 --lambda_B 1 --lambda_identity 0 --no_flip --batchSize 64 --dataset_mode EEG --dataroot ./datasets/eeg/ --data_real uci_eeg_images_train_within_extra.mat --data_dummy eeg_dummy_images_w_label_step3_within_extra.mat --which_direction BtoA --feature combined --num_classes 10
 ```    
 - Train the model without semantic constraint
 ```
 python train.py --name cyclegan --resize_or_crop=None --loadSize=32 --fineSize=32 --which_model_netD n_layers --n_layers_D 3 --model cycle_gan --lambda_A 1 --lambda_B 1 --lambda_identity 0 --no_flip --batchSize 64 --dataset_mode EEG --dataroot ./datasets/eeg/ --data_real uci_eeg_images_train_within_extra.mat --data_dummy eeg_dummy_images_w_label_step3_within_extra.mat --which_direction BtoA
 ```
 ### Train the Classification Model
+- in the directory /EEG_identity_disguising/validation
 - train the ResNet classifier
     - Select the ResNet model (ResNet18|ResNet34|ResNet50) and the classification task (alcoholism|stimulus|id) when training, for example:
 ```
@@ -76,3 +80,8 @@ python validation.py --name cycada_combined_v2 --resize_or_crop=None --loadSize=
 python validation.py --name cyclegan_v2 --resize_or_crop=None --loadSize=32 --fineSize=32 --which_model_netD n_layers --n_layers_D 3 --model test --no_flip --batchSize 32 --dataset_mode EEGsingle  --dataroot ./datasets/eeg/ --data uci_eeg_images_validation_within.mat  --which_direction BtoA --phase train --how_many 100000 --classifier ResNet34 --which_epoch 40
 ```
 The full version of the project with code, datasets and checkpoints are uploaded to this share link: [code, datasets and checkpoints](https://anu365-my.sharepoint.com/:f:/g/personal/u6783346_anu_edu_au/EgceXDJhJvhBuzYdsF0ELogBhISm7VaMaH-rBRqMHj_DPQ?e=tjOhO2)
+
+**You may need to downgrade scipy to 1.1.0*
+```
+pip install scipy==1.1.0
+```
