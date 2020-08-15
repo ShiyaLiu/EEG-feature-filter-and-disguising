@@ -1,4 +1,5 @@
-# Disguising Personal Identity Information in EEG Signals
+
+# EEG feature filter and disguising 
 
 ### Data preprocessing
 For the data preprocessing step, simply run the code listed below in order.
@@ -25,7 +26,7 @@ please run the following code in order:
 
 **I manually did this because I run the data processing code on my own device but run my code for the model on a virtual machine.*
 
-### Train the EEG disguising Model
+### Train the EEG disguising Model (feature filter)
 - First use `data_extra_combined_label.ipynb` in the folder \EEG_idendity_disguising\datasets\eeg to generate training set with extra combined label
 - Run the script:
 ```
@@ -84,4 +85,15 @@ The full version of the project with code, datasets and checkpoints are uploaded
 **You may need to downgrade scipy to 1.1.0*
 ```
 pip install scipy==1.1.0
+```
+if you find this code useful, please kindly cite 
+
+```
+@article{yao2020information,
+  title={Information-preserving Feature Filter for Short-term EEG signals},
+  author={Yao, Yue and Plested, Josephine and Gedeon, Tom},
+  journal={Neurocomputing},
+  year={2020},
+  publisher={Elsevier}
+}
 ```
