@@ -1,9 +1,9 @@
 
 # EEG feature filter and disguising 
 
-This is our code for Neurocomputing paper Information-preserving Feature Filter for Short-term EEG signals. This feature filter can filter out alcoholism, stimulus or person identities with desired features kept. Our designed feature filter can be used for privacy protection. [paper](https://reader.elsevier.com/reader/sd/pii/S0925231220303349?token=F4252E1F17EBF95BE064FDFE4DE2AB4909F026FCA7574549CB521D515B679F2E30ED9B359796D413E5C160EC127AE710) 
+This is our code for Neurocomputing paper Information-preserving Feature Filter for Short-term EEG signals. This feature filter can filter out alcoholism, stimulus or person identities with desired features kept. Our designed feature filter can be used for privacy protection. Our [paper](https://reader.elsevier.com/reader/sd/pii/S0925231220303349?token=F4252E1F17EBF95BE064FDFE4DE2AB4909F026FCA7574549CB521D515B679F2E30ED9B359796D413E5C160EC127AE710) are released online. 
 
-![fig1](https://github.com/yorkeyao/VehicleX/blob/master/VehicleX/Images/Platform.jpg)  
+![fig1](https://github.com/ShiyaLiu/EEG-feature-filter-and-disgusing/tree/master/imgs/filter_structure.jpg)  
 
 ### Data preprocessing
 For the data preprocessing step, simply run the code listed below in order.
