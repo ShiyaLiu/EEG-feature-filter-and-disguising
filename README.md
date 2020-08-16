@@ -1,7 +1,7 @@
 
 # EEG feature filter and disguising 
 
-This is our code for Neurocomputing paper Information-preserving Feature Filter for Short-term EEG signals. This feature filter can filter out alcoholism, stimulus or person identities with desired features kept. Our designed feature filter can be used for privacy protection. Our [paper](https://reader.elsevier.com/reader/sd/pii/S0925231220303349?token=F4252E1F17EBF95BE064FDFE4DE2AB4909F026FCA7574549CB521D515B679F2E30ED9B359796D413E5C160EC127AE710) are released online. 
+This is our code for Neurocomputing paper Information-preserving Feature Filter for Short-term EEG signals. This feature filter can filter out personal identities with desired features kept. Our designed feature filter can be used for privacy protection. Our [paper](https://reader.elsevier.com/reader/sd/pii/S0925231220303349?token=F4252E1F17EBF95BE064FDFE4DE2AB4909F026FCA7574549CB521D515B679F2E30ED9B359796D413E5C160EC127AE710) are released online. 
 
 ![fig1](https://github.com/ShiyaLiu/EEG-feature-filter-and-disgusing/blob/master/imgs/filter_structure.PNG)  
 
@@ -12,7 +12,7 @@ For the data preprocessing step, simply run the code listed below in order.
     - cross-subject data spplitting: \DataPreprocessing\data_split_cross.py
  2. EEG signals to images
     - \DataPreprocessing\eegtoimg.py
-### Generate EEG images with dummy identities
+### Generate EEG images with dummy identities (Domain Y)
 please run the following code in order: 
  1. time-frequency conversion: 
     - \DataPreprocessing\t2f.py
@@ -28,7 +28,7 @@ please run the following code in order:
     - uci_eeg_images_train_within.mat
     - uci_eeg_images_validation_within.mat
 
-**I manually did this because I run the data processing code on my own device but run my code for the model on a virtual machine.*
+<!-- **I manually did this because I run the data processing code on my own device but run my code for the model on a virtual machine.* -->
 
 ### Train the EEG disguising Model (feature filter)
 - First use `data_extra_combined_label.ipynb` in the folder \EEG_idendity_disguising\datasets\eeg to generate training set with extra combined label
@@ -60,7 +60,7 @@ python train.py --name cyclegan --resize_or_crop=None --loadSize=32 --fineSize=3
 ```
 python3 resnet_classification_model.py --model ResNet18 --feature alcoholism
 ```
-*The script above train a ResNet-18 model to perform the alcoholism detection task.*
+*The script above train a ResNet-18 model to perform the alcoholism classification task.*
 ### Test the EEG disguising Model
 - several essential option in the script
     - `--name` checkpoints folder name
